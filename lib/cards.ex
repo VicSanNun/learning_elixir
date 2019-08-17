@@ -2,6 +2,14 @@ defmodule Cards do
   @moduledoc """
     Methods for a deck game
   """
+
+  @doc """
+    Create a new Deck
+
+    ##Examples
+
+      iex>deck = Cards.create_deck
+  """
   def create_deck do
     values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
     suits = ["Spades", "Clubs", "Hearts", "Diamond"]
@@ -12,23 +20,38 @@ defmodule Cards do
 
   end
 
+  @doc """
+    Shuffle the deck
+  """
   def shuffle(deck) do
     Enum.shuffle(deck)
   end
 
+  @doc """
+    Does this card exist in deck?
+  """
   def contain?(deck, card) do
     Enum.member?(deck, card)
   end
 
+  @doc """
+    Separating the deck
+  """
   def deal(deck, hand_size) do
     Enum.split(deck, hand_size)
   end
 
+  @doc """
+    Saving the deck
+  """
   def save(deck, filename) do
     binary = :erlang.term_to_binary(deck)
     File.write(filename, binary)
   end
 
+  @doc """
+    Loading the deck
+  """
   def load(filename) do
     #Evitar usar IF, tentar sempre usar 'case'
     case File.read(filename) do
@@ -38,6 +61,9 @@ defmodule Cards do
 
   end
 
+  @doc """
+    Create, shuffle and separate the cards
+  """
   def create_hand(hand_size) do
     Cards.create_deck
     |> Cards.shuffle()
