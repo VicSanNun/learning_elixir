@@ -5,10 +5,6 @@ defmodule Cards do
 
   @doc """
     Create a new Deck
-
-    ##Examples
-
-      iex>deck = Cards.create_deck
   """
   def create_deck do
     values = ["Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"]
@@ -29,6 +25,12 @@ defmodule Cards do
 
   @doc """
     Does this card exist in deck?
+
+    ##Examples
+
+      iex> deck = Cards.create_deck
+      iex> Cards.contain?(deck, "Ace of Spades")
+      true
   """
   def contain?(deck, card) do
     Enum.member?(deck, card)
