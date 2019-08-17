@@ -28,12 +28,10 @@ defmodule Cards do
   end
 
   def load(filename) do
-    {status, binary_deck} = File.read(filename)
-
     #Evitar usar IF, tentar sempre usar 'case'
-    case status do
-      :ok -> :erlang.binary_to_term(binary_deck)
-      :error -> "The file don't exists"
+    case File.read(filename) do
+      {:ok, binary_deck} -> :erlang.binary_to_term(binary_deck)
+      {:error, _reason} -> "The file don't exists"
     end
 
   end
